@@ -2,6 +2,9 @@
 #include "funcoes.h"
 
 int main(){
+     funcao fs[] = {add};
+     Infos infos[TOTAL];
+int pos;
 int opcao;
 do{
 printf("Bem vindo! \n");
@@ -17,8 +20,11 @@ printf("Escolha uma Opção: ");
 scanf("%d",&opcao);
 if(opcao > 0 && opcao< 6){
 //chamada da função
-tarefas(opcao);
+ERROS erro =fs[opcao-1](infos,&pos);
 printf("------------------\n");
+}
+else if(opcao == 0 ){
+printf("Até mais =( \n");
 }
 else{
 printf("**Opção Invalida**\n");
