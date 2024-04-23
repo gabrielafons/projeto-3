@@ -29,3 +29,16 @@ ERROS add(Infos infos[], int *pos) {
 
     return OK;
 }
+
+
+
+ERROS listar(Infos infos[], int *pos){
+    if(*pos == 0)
+        return SEM_TAREFAS;
+
+    for(int i=0; i<*pos; i++){
+                printf("nome: %s \ttelefone: %s \temail: %s \t\n", infos[i].nome, infos[i].telefone, infos[i].email);
+    }
+
+    return OK;
+}
