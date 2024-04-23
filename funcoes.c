@@ -1,19 +1,31 @@
 #include <stdio.h>
 #include "funcoes.h"
 
-void tarefas(int opcao){
-if(opcao == 1){
-printf("Salvar usuario (Em desenvolvimento)\n");}
-else if(opcao == 2){
-printf("Listar Contatos (Em desenvolvimento)\n");
-}
-else if(opcao == 3){
-printf("Deletar (Em desenvolvimento)\n");
-}
-else if(opcao == 4){
-printf("Salvar Agenda (Em desenvolvimento)\n");    
-}
-else if(opcao == 5){
-printf("Carregar Agenda (Em desenvolvimento)\n");   
-}
+ERROS add(Infos infos[], int *pos) {
+  printf("Entre com seu nome: ");
+  fgets(infos[*pos].nome, sizeof(infos[*pos].nome), stdin); 
+  infos[*pos].nome[strcspn(infos[*pos].nome, "\n")] = 0; 
+ 
+  
+  while (1) {
+      printf("Entre com seu telefone (Ex: 11-123456789): ");
+      fgets(infos[*pos].telefone, sizeof(infos[*pos].telefone), stdin);
+      infos[*pos].telefone[strcspn(infos[*pos].telefone, "\n")] = 0;
+
+      
+      if (strlen(infos[*pos].telefone) >= 11) {
+          break;  
+      } else {
+          printf("Telefone inválido! Digite novamente.\n");
+      }
+  }
+
+  printf("Entre com seu email: ");
+  
+  scanf("%s", infos[*pos].email);
+  clearBuffer(); 
+
+    *pos = *pos + 1;
+
+    return OK;
 }
