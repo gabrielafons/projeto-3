@@ -2,6 +2,10 @@
 #include "funcoes.h"
 
 int main(){
+     funcao fs[] = {add,listar,deletar,salvar,carregar};
+     Infos infos[TOTAL];
+  
+int pos;
 int opcao;
 do{
 printf("Bem vindo! \n");
@@ -15,14 +19,18 @@ printf("5 - Carregar Agenda\n");
 printf("------------------\n");
 printf("Escolha uma Opção: ");
 scanf("%d",&opcao);
-if(opcao > 0 && opcao< 6){
-//chamada da função
-tarefas(opcao);
-printf("------------------\n");
-}
-else{
-printf("**Opção Invalida**\n");
-printf("------------------\n");
-}
-}while(opcao >0);    
-}
+   clearBuffer(); // Limpar buffer após scanf
+
+          if (opcao > 0 && opcao < 6) {
+              ERROS erro = fs[opcao - 1](infos, &pos);
+              printf("------------------\n");
+          } else if (opcao == 0) {
+              printf("Até mais =( \n");
+          } else {
+              printf("**Opção Inválida**\n");
+              printf("------------------\n");
+          }
+      } while (opcao > 0);
+
+      return 0;
+  }
