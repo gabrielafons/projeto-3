@@ -43,6 +43,18 @@ ERROS listar(Infos infos[], int *pos){
     return OK;
 }
 
+
+
+void normalizar_telefone(char *telefone) {
+    int j = 0;
+    for (int i = 0; telefone[i] != '\0'; i++) {
+        if (isdigit(telefone[i])) {
+            telefone[j++] = telefone[i];  
+        }
+    }
+    telefone[j] = '\0';  
+}
+
 ERROS deletar(Infos infos[], int *pos) {
     if (*pos == 0) {
         return SEM_TAREFAS;  
