@@ -121,3 +121,31 @@ ERROS salvar(Infos infos[], int *pos){
 
     return OK;
 }
+
+
+
+
+ERROS carregar(Infos infos[], int *pos){
+    FILE *f = fopen("info.bin", "rb");
+    if(f == NULL)
+        return ABRIR;
+
+    int qtd = fread(infos, TOTAL, sizeof(Infos), f);
+    if(qtd == 0)
+        return LER;
+
+    qtd = fread(pos, 1, sizeof(int), f);
+    if(qtd == 0)
+        return LER;
+
+    if(fclose(f))
+        return FECHAR;
+
+    return OK;
+
+}
+
+void clearBuffer(){
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
+}
