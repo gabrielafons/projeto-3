@@ -42,3 +42,39 @@ ERROS listar(Infos infos[], int *pos){
 
     return OK;
 }
+
+ERROS deletar(Infos infos[], int *pos) {
+    if (*pos == 0) {
+        return SEM_TAREFAS;  
+    }
+
+    char telefone_deletar[15];
+    printf("Entre com o número do contato a ser deletado: ");
+    fgets(telefone_deletar, sizeof(telefone_deletar), stdin);
+    telefone_deletar[strcspn(telefone_deletar, "\n")] = 0;
+
+   
+    normalizar_telefone(telefone_deletar);
+
+    int encontrado = -1;
+    for (int i = 0; i < *pos; i++) {
+        char telefone_comparacao[15];
+        strcpy(telefone_comparacao, infos[i].telefone);
+        normalizar_telefone(telefone_comparacao);
+
+        if (strcmp(telefone_comparacao, telefone_deletar) == 0) {  
+            encontrado = i;  
+            break;
+        }
+    }
+
+    if (encontrado == -1) {
+        return NAO_ENCONTRADO;  
+    }
+
+    
+    for (int i = encontrado; i < *pos - 1; i++) {
+        infos[i] = infos[i + 1];  
+    }
+
+    (*pos)--;  
