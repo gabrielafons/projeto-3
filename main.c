@@ -2,7 +2,7 @@
 #include "funcoes.h"
 
 int main(){
-     funcao fs[] = {add,listar,deletar,salvar,carregar};
+     funcao fs[] = {add,listar,deletar,salvar,carregar,};
      Infos infos[TOTAL];
   
 int pos;
@@ -16,6 +16,7 @@ printf("2 - Listar Contatos\n");
 printf("3 - Deletar\n");
 printf("4 - Salvar Agenda\n");
 printf("5 - Carregar Agenda\n");
+printf("6 - Alterar Contato\n");
 printf("------------------\n");
 printf("Escolha uma Opção: ");
 scanf("%d",&opcao);
