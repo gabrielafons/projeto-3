@@ -138,52 +138,45 @@ ERROS deletar(Infos infos[], int *pos) {
 
 
 
-ERROS salvar(Infos infos[], int *pos){
+ERROS salvar(Infos infos[], int *pos) {
     FILE *f = fopen("info.bin", "wb");
-    if(f == NULL)
+    if (f == NULL)
         return ABRIR;
 
-    int qtd = fwrite(infos, TOTAL, sizeof(Infos), f);
-    if(qtd == 0)
+    int qtd = fwrite(infos, sizeof(Infos), *pos, f);
+    if (qtd == 0)
         return ESCREVER;
 
-    qtd = fwrite(pos, 1, sizeof(int), f);
-    if(qtd == 0)
+    qtd = fwrite(pos, sizeof(int), 1, f);
+    if (qtd == 0)
         return ESCREVER;
 
-    if(fclose(f))
+    if (fclose(f))
         return FECHAR;
 
     return OK;
 }
 
-
-
-
-ERROS carregar(Infos infos[], int *pos){
+ERROS carregar(Infos infos[], int *pos) {
     FILE *f = fopen("info.bin", "rb");
-    if(f == NULL)
+    if (f == NULL)
         return ABRIR;
 
-    int qtd = fread(infos, TOTAL, sizeof(Infos), f);
-    if(qtd == 0)
+    int qtd = fread(infos, sizeof(Infos), CONTATOS, f);
+    if (qtd == 0)
         return LER;
 
-    qtd = fread(pos, 1, sizeof(int), f);
-    if(qtd == 0)
+    qtd = fread(pos, sizeof(int), 1, f);
+    if (qtd == 0)
         return LER;
 
-    if(fclose(f))
+    if (fclose(f))
         return FECHAR;
 
     return OK;
-
 }
 
-void clearBuffer(){
-    int c;
-    while ((c = getchar()) != '\n' && c != EOF);
-}
+
 
 ERROS alterar(Infos infos[], int *pos) {
     int posicao_validada =0; // posição dos dados do usuarios, caso a validação seja correta
@@ -370,4 +363,14 @@ ERROS alterar(Infos infos[], int *pos) {
             }while(1);
     }
     return OK;
+}
+
+
+
+
+
+
+void clearBuffer(){
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
 }
