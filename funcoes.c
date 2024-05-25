@@ -20,10 +20,24 @@ ERROS add(Infos infos[], int *pos) {
       }
   }
 
-  printf("Entre com seu email: ");
+  while(1){
+        
+        printf("Entre com seu email: ");
+        scanf("%s", infos[*pos].email);
+        clearBuffer();
+
+        ERROS erro = validar_email(infos[*pos].email);
+        if (erro == OK) {
+            break;
+        } else if (erro == EMAIL_INVALIDO) {
+            printf("Email inválido! Digite novamente.\n");
+        } else {
+            return erro;
+        }
+
+
+    }
   
-  scanf("%s", infos[*pos].email);
-  clearBuffer(); 
 
     *pos = *pos + 1;
 
@@ -31,6 +45,20 @@ ERROS add(Infos infos[], int *pos) {
 }
 
 
+
+
+
+ERROS validar_email(const char *email) {
+    const char *arroba = strchr(email, '@');
+    if (!arroba || arroba == email || arroba == email + strlen(email) - 1) {
+        return EMAIL_INVALIDO;
+    }
+    const char *ponto = strchr(arroba + 1, '.');
+    if (!ponto || ponto == arroba + 1 || ponto == email + strlen(email) - 1) {
+        return EMAIL_INVALIDO;
+    }
+    return OK;
+}
 
 ERROS listar(Infos infos[], int *pos){
     if(*pos == 0)
