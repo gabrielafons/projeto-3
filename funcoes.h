@@ -18,4 +18,6 @@ ERROS deletar(Infos infos[], int *pos);
 ERROS salvar(Infos infos[], int *pos);
 ERROS carregar(Infos infos[], int *pos);
 
+ERROS alterar(Infos infos[], int *pos);
+
 void clearBuffer();
