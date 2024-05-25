@@ -45,7 +45,14 @@ ERROS add(Infos infos[], int *pos) {
 }
 
 
-
+ERROS telefone_unico(Infos infos[], int pos, const char *telefone) {
+    for (int i = 0; i < pos; i++) {
+        if (strcmp(infos[i].telefone, telefone) == 0) {
+            return TELEFONE_DUPLICADO;
+        }
+    }
+    return OK;
+}
 
 
 ERROS validar_email(const char *email) {
